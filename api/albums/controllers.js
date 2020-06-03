@@ -35,6 +35,7 @@ const controllers = {
     const title = req.body.title; //Title
     const artist = Number(req.body.artist); //ArtistId
     let lastId;
+    // 'max(artistId)' doesn't work correctly
     db.get(`SELECT count(artistId) AS res FROM albums`, (err, row) => {
       if (err) {
         res.status(400).json({ error: err.message });
