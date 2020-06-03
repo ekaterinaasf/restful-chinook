@@ -64,7 +64,17 @@ const controllers = {
       res.json(row);
     });
   },
-  delete: (req, res) => {},
+  delete: (req, res) => {
+    const id = req.params.id;
+    let sql = `DELETE FROM media_types WHERE MediaTypeId=${id}`;
+    db.run(sql, (err, row) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
+      res.json(row);
+    });
+  },
 };
 
 module.exports = controllers;
